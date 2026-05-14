@@ -1,0 +1,5 @@
+warehouse_id,zone,max_capacity,truck_count
+W1,Urban,17270,11
+W2,Industrial,10860,14
+W3,Center,15191,12
+W4,South,15734,9
