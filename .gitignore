@@ -1,5 +1,11 @@
+# Datos y gráficas
+data/
+*.csv
+*.png
+
+# Entornos virtuales
 venv/
-__pycache__/
-*.pyc
+env/
+
+# Archivos de sistema
 .DS_Store
-.ipynb_checkpoints/
