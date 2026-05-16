@@ -10,10 +10,24 @@ def create_orders_from_demand(demand_df):
     En esta primera versión:
         requested_quantity = forecasted_demand
     """
+
+    # Se modificó la obtención de forecasted_demand para permitir
+# que el sistema utilice demanda pronosticada por el modelo
+# de Machine Learning cuando exista la columna predicted_demand.
+#
+# En caso de no existir una predicción, el sistema mantiene
+# compatibilidad usando la demanda original simulada.
+#
+# Esto permite integrar IA al pipeline logístico sin romper
+# la lógica existente del sistema.
+
+
     orders = []
 
     for _, row in demand_df.iterrows():
-        forecasted_demand = float(row["demand"])
+        forecasted_demand = float(
+    row.get("predicted_demand", row["demand"])
+)
 
         order = {
             "date": row["date"],
