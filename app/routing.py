@@ -14,17 +14,6 @@ COST_PER_KM = 12
 def assign_orders_to_warehouses(orders, routes_df=None):
     """
     Asigna cada pedido al almacén más cercano disponible en routes.csv.
-
-    Formato esperado de cada pedido:
-    {
-        "date": "2026-01-01",
-        "store_id": "UR-001",
-        "zone": "Urban",
-        "forecasted_demand": 1400.5,
-        "requested_quantity": 1400.5,
-        "event": "None",
-        "overload_risk": 0.72
-    }
     """
     if routes_df is None:
         routes_df = load_routes()
@@ -155,21 +144,90 @@ def assign_orders_to_trucks(assigned_orders, trucks_df=None):
     return truck_loads, unassigned_orders
 
 
-def calculate_total_distance(truck_loads):
+def build_multi_stop_routes(truck_loads):
     """
-    Calcula distancia total aproximada.
+    Construye rutas multi-parada para cada camión.
 
-    Por ahora usamos ida y vuelta por pedido:
-        distancia_total += distance_km * 2
+    Antes:
+        almacén -> tienda -> almacén
 
-    Esto mantiene la idea de camiones en ciclo:
-    almacén → tienda → almacén.
+    Ahora:
+        almacén -> tienda_1 -> tienda_2 -> ... -> tienda_n -> almacén
+
+    Como el dataset actual no tiene distancias entre tiendas,
+    se usa una aproximación con factor de eficiencia.
     """
-    total_distance = 0
+
+    route_plans = {}
 
     for truck_id, truck_data in truck_loads.items():
-        for order in truck_data["orders"]:
-            total_distance += order["distance_km"] * 2
+        orders = truck_data["orders"]
+
+        if not orders:
+            route_plans[truck_id] = {
+                "warehouse_id": truck_data["warehouse_id"],
+                "stops": [],
+                "number_of_stops": 0,
+                "estimated_route_distance": 0,
+                "route_type": "empty"
+            }
+            continue
+
+        sorted_orders = sorted(
+            orders,
+            key=lambda order: (
+                order.get("zone", ""),
+                order.get("distance_km", 0)
+            )
+        )
+
+        stops = [
+            {
+                "store_id": order["store_id"],
+                "zone": order.get("zone"),
+                "requested_quantity": order["requested_quantity"],
+                "distance_from_warehouse": order["distance_km"]
+            }
+            for order in sorted_orders
+        ]
+
+        direct_round_trip_distance = sum(
+            order["distance_km"] * 2
+            for order in sorted_orders
+        )
+
+        route_efficiency_factor = 0.65
+
+        estimated_route_distance = (
+            direct_round_trip_distance
+            * route_efficiency_factor
+        )
+
+        route_plans[truck_id] = {
+            "warehouse_id": truck_data["warehouse_id"],
+            "stops": stops,
+            "number_of_stops": len(stops),
+            "estimated_route_distance": round(estimated_route_distance, 2),
+            "route_type": "multi_stop"
+        }
+
+    return route_plans
+
+
+def calculate_total_distance(truck_loads):
+    """
+    Calcula distancia total usando rutas multi-parada.
+
+    En lugar de sumar ida y vuelta por cada pedido,
+    utiliza la distancia estimada de cada ruta por camión.
+    """
+
+    route_plans = build_multi_stop_routes(truck_loads)
+
+    total_distance = sum(
+        route_data["estimated_route_distance"]
+        for route_data in route_plans.values()
+    )
 
     return round(total_distance, 2)
 
@@ -214,6 +272,19 @@ def routing_summary(truck_loads, unassigned_orders):
     cost_data = calculate_transport_cost(truck_loads)
     utilization = calculate_truck_utilization(truck_loads)
 
+    route_plans = build_multi_stop_routes(truck_loads)
+
+    active_routes = {
+        truck_id: route
+        for truck_id, route in route_plans.items()
+        if route["number_of_stops"] > 0
+    }
+
+    total_stops = sum(
+        route["number_of_stops"]
+        for route in active_routes.values()
+    )
+
     completed_orders = 0
     total_requested_quantity = 0
     total_loaded_quantity = 0
@@ -232,5 +303,8 @@ def routing_summary(truck_loads, unassigned_orders):
         "total_distance": cost_data["total_distance"],
         "variable_cost": cost_data["variable_cost"],
         "total_cost": cost_data["total_cost"],
-        "truck_utilization": utilization
+        "truck_utilization": utilization,
+        "active_routes": len(active_routes),
+        "total_stops": total_stops,
+        "route_plans": active_routes
     }
