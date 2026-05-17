@@ -206,6 +206,9 @@ Este sistema automáticamente genera:
 ### Demand Forecast vs Real Demand
 https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast_vs_real.png?raw=true
 
+### Logistics KPI Dashboard
+https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistics_kpi_dashboard.png?raw=true
+
 ### Conclusión
 Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logística pueden combinarse para crear un sistema inteligente de supply chain capaz de:
 - Pronosticar demanda
