@@ -35,6 +35,8 @@ from app.visualizations import (
     save_kpi_dashboard,
 )
 
+from app.reporting import save_executive_summary
+
 
 def main():
     print("SMART LOGISTICS PROJECT")
@@ -103,7 +105,9 @@ def main():
         print("--------------------------------")
 
         print_logistics_results(results)
-
+    
+    save_executive_summary(results_by_date)
+    print("Resumen ejecutivo guardado en outputs/executive_summary.csv")
     save_kpi_dashboard(results_by_date)
 
     print("Dashboard KPI guardado en outputs/")
