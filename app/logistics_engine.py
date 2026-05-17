@@ -138,11 +138,17 @@ def run_logistics_pipeline_by_date(orders, seed=42, max_days=None):
     return results_by_date
 
 
+def format_money(value):
+    return f"${float(value):,.2f}"
+
+
+def format_percent(value):
+    return f"{float(value):.2f}%"
+
+
 def print_logistics_results(results):
-    """
-    Imprime los resultados principales del flujo logístico.
-    Esta función sirve para la demo y para depuración.
-    """
+    """Imprime resultados principales del flujo logístico en formato limpio."""
+
     print("RESULTADOS DEL MOTOR LOGISTICO")
     print("==============================")
     print()
@@ -152,23 +158,42 @@ def print_logistics_results(results):
     print(f"Pedidos invalidos: {len(results['invalid_orders'])}")
     print(f"Pedidos asignados a almacenes: {len(results['assigned_orders'])}")
     print(f"Pedidos no asignados: {len(results['unassigned_orders'])}")
-
     print()
+
     print("Costos logisticos:")
-    print(results["cost_data"])
-
+    cost_data = results["cost_data"]
+    for key, value in cost_data.items():
+        clean_key = key.replace("_", " ").capitalize()
+        if "cost" in key:
+            print(f"- {clean_key}: {format_money(value)}")
+        else:
+            print(f"- {clean_key}: {float(value):,.2f}")
     print()
+
     print("Utilizacion de camiones:")
     used_trucks = {
         truck_id: utilization
         for truck_id, utilization in results["truck_utilization"].items()
         if utilization > 0
     }
-    print(used_trucks)
 
+    for truck_id, utilization in used_trucks.items():
+        print(f"- {truck_id}: {format_percent(utilization)}")
     print()
+
     print("Metricas de entrega:")
-    print(results["delivery_metrics"])
-
+    delivery_metrics = results["delivery_metrics"]
+    for key, value in delivery_metrics.items():
+        clean_key = key.replace("_", " ").capitalize()
+        if "cost" in key:
+            print(f"- {clean_key}: {format_money(value)}")
+        elif "rate" in key or "level" in key:
+            print(f"- {clean_key}: {format_percent(value)}")
+        else:
+            print(f"- {clean_key}: {float(value):,.2f}")
     print()
-    print(f"Costo total final con incertidumbre: ${results['final_total_cost']}")
+
+    print(
+        "Costo total final con incertidumbre: "
+        f"{format_money(results['final_total_cost'])}"
+    )
