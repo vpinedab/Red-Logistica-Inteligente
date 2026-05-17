@@ -75,16 +75,13 @@ def main():
     )
 
     save_forecast_results(
-        forecast_df,
-        metrics
-    )
+    forecast_df,
+    metrics
+)
 
-    print()
-    print(
-        "Convirtiendo demanda pronosticada "
-        "en pedidos logísticos..."
-    )
-
+    print("Forecast guardado en outputs/demand_forecast_results.csv")
+    print("Metricas guardadas en outputs/demand_model_metrics.csv")
+    
     orders = create_orders_from_demand(
         forecast_df
     )
@@ -111,6 +108,7 @@ def main():
         print_logistics_results(results)
 
     print()
+    print("Archivos generados en carpeta outputs/")
     print("Ejecucion finalizada.")
 
 
