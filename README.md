@@ -91,7 +91,11 @@ El proyecto simula:
 
 Esto crea un entorno logístico más realista para evaluar decisiones operativas.
 
-### Arquitectura del Sistema
+## Arquitectura del Sistema
+
+El sistema sigue un flujo de procesamiento completo:
+
+```text
 Generador de Demanda
         ↓
 Predicción con Machine Learning
@@ -106,32 +110,42 @@ Rutas Multi-Destino
         ↓
 Simulación de Entregas
         ↓
-Evaluación de Costos y Servicio
+Evaluación de Costos y Nivel de Servicio
+```
 
-### Estructura del Proyecto
+## Estructura del Proyecto
+
+```text
 Red-Logistica-Inteligente/
-│
 ├── app/
-│   ├── demand_forecast_model.py
-│   ├── logistics_engine.py
+│   ├── main.py
 │   ├── logistics.py
+│   ├── logistics_engine.py
 │   ├── routing.py
 │   ├── order_adapter.py
-│   └── main.py
+│   ├── demand_forecast_model.py
+│   ├── visualizations.py
+│   └── reporting.py
 │
-├── src/simulation/
-│   ├── demand_generator.py
-│   └── logistics_network.py
-│
-├── data/raw/
-│   ├── demand_data.csv
-│   ├── routes.csv
-│   ├── trucks.csv
-│   └── warehouses.csv
+├── src/
+│   └── simulation/
+│       ├── demand_generator.py
+│       ├── logistics_network.py
+│       └── simulation_engine.py
 │
 ├── outputs/
+│   ├── demand_forecast_results.csv
+│   ├── demand_model_metrics.csv
+│   ├── executive_summary.csv
+│   ├── forecast_vs_real.png
+│   ├── predicted_demand_by_zone.png
+│   └── logistics_kpi_dashboard.png
 │
-└── README.md
+├── README.md
+├── requirements.txt
+├── Dockerfile
+└── docker-compose.yml
+```
 
 ### Instalación
 - Clonar el Repositorio
