@@ -232,7 +232,7 @@ Este sistema automáticamente genera:
 - predicted_demand_by_zone.png
 - logistics_kpi_dashboard.png
 
-### Demand Forecast vs Real Demand
+## Demand Forecast vs Real Demand
 https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast_vs_real.png?raw=true
 
 ### Logistics KPI Dashboard
