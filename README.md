@@ -189,17 +189,6 @@ El proyecto genera automáticamente visualizaciones para:
 
 Estas visualizaciones se guardan en: data/raw/
 
-## Generated Outputs
-
-El sistema genera los siguientes outuputs:
-
-- demand_forecast_results.csv
-- demand_model_metrics.csv
-- executive_summary.csv
-- forecast_vs_real.png
-- predicted_demand_by_zone.png
-- logistics_kpi_dashboard.png
-
 ### Tecnologías Utilizadas
 - Python
 - Pandas
