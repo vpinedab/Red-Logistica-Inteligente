@@ -91,7 +91,11 @@ El proyecto simula:
 
 Esto crea un entorno logístico más realista para evaluar decisiones operativas.
 
-### Arquitectura del Sistema
+## Arquitectura del Sistema
+
+El sistema sigue un flujo de procesamiento completo:
+
+```text
 Generador de Demanda
         ↓
 Predicción con Machine Learning
@@ -106,32 +110,42 @@ Rutas Multi-Destino
         ↓
 Simulación de Entregas
         ↓
-Evaluación de Costos y Servicio
+Evaluación de Costos y Nivel de Servicio
+```
 
-### Estructura del Proyecto
+## Estructura del Proyecto
+
+```text
 Red-Logistica-Inteligente/
-│
 ├── app/
-│   ├── demand_forecast_model.py
-│   ├── logistics_engine.py
+│   ├── main.py
 │   ├── logistics.py
+│   ├── logistics_engine.py
 │   ├── routing.py
 │   ├── order_adapter.py
-│   └── main.py
+│   ├── demand_forecast_model.py
+│   ├── visualizations.py
+│   └── reporting.py
 │
-├── src/simulation/
-│   ├── demand_generator.py
-│   └── logistics_network.py
-│
-├── data/raw/
-│   ├── demand_data.csv
-│   ├── routes.csv
-│   ├── trucks.csv
-│   └── warehouses.csv
+├── src/
+│   └── simulation/
+│       ├── demand_generator.py
+│       ├── logistics_network.py
+│       └── simulation_engine.py
 │
 ├── outputs/
+│   ├── demand_forecast_results.csv
+│   ├── demand_model_metrics.csv
+│   ├── executive_summary.csv
+│   ├── forecast_vs_real.png
+│   ├── predicted_demand_by_zone.png
+│   └── logistics_kpi_dashboard.png
 │
-└── README.md
+├── README.md
+├── requirements.txt
+├── Dockerfile
+└── docker-compose.yml
+```
 
 ### Instalación
 - Clonar el Repositorio
@@ -142,11 +156,12 @@ Red-Logistica-Inteligente/
 - python3 -m pip install -r requirements.txt
 
 ### Cómo Ejecutar el Proyecto
-Paso 1: Generar Simulación de Demanda
+
+- Paso 1: Generar Simulación de Demanda
 python3 src/simulation/demand_generator.py
-Paso 2: Generar Red Logística
+- Paso 2: Generar Red Logística
 python3 src/simulation/logistics_network.py
-Paso 3: Ejecutar Pipeline Completo
+- Paso 3: Ejecutar Pipeline Completo
 python3 -m app.main
 
 ### Resultados Generados
@@ -202,6 +217,23 @@ Las principales contribuciones del sistema incluyen:
 - Implementación de rutas multi-destino
 - Corrección de consistencia entre demanda y rutas
 - Evaluación de costos y nivel de servicio
+
+## Generated Outputs
+
+Este sistema automáticamente genera:
+
+- demand_forecast_results.csv
+- demand_model_metrics.csv
+- executive_summary.csv
+- forecast_vs_real.png
+- predicted_demand_by_zone.png
+- logistics_kpi_dashboard.png
+
+### Demand Forecast vs Real Demand
+https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast_vs_real.png?raw=true
+
+### Logistics KPI Dashboard
+https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistics_kpi_dashboard.png?raw=true
 
 ### Conclusión
 Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logística pueden combinarse para crear un sistema inteligente de supply chain capaz de:
