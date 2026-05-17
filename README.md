@@ -192,6 +192,20 @@ Las principales contribuciones del sistema incluyen:
 - Corrección de consistencia entre demanda y rutas
 - Evaluación de costos y nivel de servicio
 
+## Generated Outputs
+
+Este sistema automáticamente genera:
+
+- demand_forecast_results.csv
+- demand_model_metrics.csv
+- executive_summary.csv
+- forecast_vs_real.png
+- predicted_demand_by_zone.png
+- logistics_kpi_dashboard.png
+
+### Demand Forecast vs Real Demand
+https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast_vs_real.png?raw=true
+
 ### Conclusión
 Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logística pueden combinarse para crear un sistema inteligente de supply chain capaz de:
 - Pronosticar demanda
