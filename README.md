@@ -4,6 +4,10 @@
 
 Proyecto Final – Inteligencia Artificial
 
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Machine Learning](https://img.shields.io/badge/Machine-Learning-green)
+![Logistics](https://img.shields.io/badge/Logistics-AI-orange)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 ---
 
 ## Descripción General
@@ -189,6 +193,16 @@ El proyecto genera automáticamente visualizaciones para:
 
 Estas visualizaciones se guardan en: data/raw/
 
+## KPIs del Sistema
+
+| KPI | Resultado |
+|---|---|
+| Pedidos asignados | 26 |
+| Pedidos sin asignar | 0 |
+| Nivel de servicio | 88.46% |
+| Modelo ML | Random Forest Regressor |
+| Error MAPE | 20% |
+
 ### Tecnologías Utilizadas
 - Python
 - Pandas
@@ -223,6 +237,30 @@ https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast
 
 ### Logistics KPI Dashboard
 https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistics_kpi_dashboard.png?raw=true
+
+## Dashboard KPI
+
+![Dashboard](outputs/logistics_kpi_dashboard.png)
+
+## Forecast vs Real Demand
+
+![Forecast](outputs/forecast_vs_real.png)
+
+## Limitaciones Actuales
+
+- El sistema utiliza datos simulados
+- Las rutas utilizan heurísticas y no optimización exacta VRP
+- No existe integración con APIs de mapas reales
+- El tráfico es probabilístico y no tiempo real
+
+## Trabajo Futuro
+
+- Integración con Google Maps API
+- Optimización VRP con OR-Tools
+- Dashboard web interactivo
+- Integración con datos reales
+- Deep Learning para forecasting avanzado
+
 
 ### Conclusión
 Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logística pueden combinarse para crear un sistema inteligente de supply chain capaz de:
