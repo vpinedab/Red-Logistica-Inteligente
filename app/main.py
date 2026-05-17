@@ -29,6 +29,12 @@ from app.visualizations import (
     save_zone_demand_plot,
 )
 
+from app.visualizations import (
+    save_forecast_plot,
+    save_zone_demand_plot,
+    save_kpi_dashboard,
+)
+
 
 def main():
     print("SMART LOGISTICS PROJECT")
@@ -97,6 +103,10 @@ def main():
         print("--------------------------------")
 
         print_logistics_results(results)
+
+    save_kpi_dashboard(results_by_date)
+
+    print("Dashboard KPI guardado en outputs/")
 
     print()
     print("Archivos generados en carpeta outputs/")
