@@ -142,11 +142,12 @@ Red-Logistica-Inteligente/
 - python3 -m pip install -r requirements.txt
 
 ### Cómo Ejecutar el Proyecto
-Paso 1: Generar Simulación de Demanda
+
+- Paso 1: Generar Simulación de Demanda
 python3 src/simulation/demand_generator.py
-Paso 2: Generar Red Logística
+- Paso 2: Generar Red Logística
 python3 src/simulation/logistics_network.py
-Paso 3: Ejecutar Pipeline Completo
+- Paso 3: Ejecutar Pipeline Completo
 python3 -m app.main
 
 ### Resultados Generados
