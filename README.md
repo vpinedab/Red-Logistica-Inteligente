@@ -221,7 +221,7 @@ Las principales contribuciones del sistema incluyen:
 - Corrección de consistencia entre demanda y rutas
 - Evaluación de costos y nivel de servicio
 
-## Generated Outputs
+### Generated Outputs
 
 Este sistema automáticamente genera:
 
@@ -238,22 +238,22 @@ https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/forecast
 ### Logistics KPI Dashboard
 https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistics_kpi_dashboard.png?raw=true
 
-## Dashboard KPI
+### Dashboard KPI
 
 ![Dashboard](outputs/logistics_kpi_dashboard.png)
 
-## Forecast vs Real Demand
+###Forecast vs Real Demand
 
 ![Forecast](outputs/forecast_vs_real.png)
 
-## Limitaciones Actuales
+### Limitaciones Actuales
 
 - El sistema utiliza datos simulados
 - Las rutas utilizan heurísticas y no optimización exacta VRP
 - No existe integración con APIs de mapas reales
 - El tráfico es probabilístico y no tiempo real
 
-## Trabajo Futuro
+### Trabajo Futuro
 
 - Integración con Google Maps API
 - Optimización VRP con OR-Tools
@@ -270,5 +270,11 @@ Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logís
 - Evaluar desempeño de servicio
 - Reducir ineficiencias operativas
 - El resultado final es un pipeline completo de simulación logística impulsado por IA.
+
+### Autores
+
+- Valeria Covarrubias 
+- Nuria García
+- Natalia Quintana 
 
 
