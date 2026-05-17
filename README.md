@@ -242,7 +242,7 @@ https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistic
 
 ![Dashboard](outputs/logistics_kpi_dashboard.png)
 
-###Forecast vs Real Demand
+### Forecast vs Real Demand
 
 ![Forecast](outputs/forecast_vs_real.png)
 
