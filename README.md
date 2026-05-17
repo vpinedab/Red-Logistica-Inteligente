@@ -273,8 +273,8 @@ Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logís
 
 ### Autores
 
-- Valeria  
-- Nuria García
-- Natalia Quintana 
+- Valentina Pineda Barrón  
+- Nuria García Valdecasas
+- Natalia Quintana Guzmán
 
 
