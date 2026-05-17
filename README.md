@@ -221,7 +221,7 @@ Las principales contribuciones del sistema incluyen:
 - Corrección de consistencia entre demanda y rutas
 - Evaluación de costos y nivel de servicio
 
-### Generated Outputs
+### Salidas generadas
 
 Este sistema automáticamente genera:
 
