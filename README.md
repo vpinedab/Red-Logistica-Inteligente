@@ -127,7 +127,9 @@ Red-Logistica-Inteligente/
 │   ├── logistics_engine.py
 │   ├── routing.py
 │   ├── order_adapter.py
+│   ├── delivery_simulation.py
 │   ├── demand_forecast_model.py
+│   ├── products.py
 │   ├── visualizations.py
 │   └── reporting.py
 │
@@ -168,6 +170,15 @@ Red-Logistica-Inteligente/
 ├── .dockerignore
 └── .gitignore
 ```
+
+### Módulos de Extensión Futura
+
+Algunos archivos están incluidos como base para futuras mejoras del sistema, aunque no forman parte del pipeline principal ejecutado actualmente por Docker.
+
+- `app/products.py`: define un catálogo inicial de productos y categorías. Está pensado para futuras integraciones con inventarios reales, tiendas o bases de datos de productos.
+- `src/simulation/simulation_engine.py`: contiene una simulación logística base que puede usarse como referencia operativa para comparar escenarios o extender el modelo en versiones posteriores.
+
+En la versión actual, el sistema trabaja principalmente con datos simulados de tiendas, zonas, demanda, almacenes, rutas y camiones.
 
 ### Instalación
 
@@ -330,6 +341,8 @@ https://github.com/vpinedab/Red-Logistica-Inteligente/blob/main/outputs/logistic
 - Dashboard web interactivo
 - Integración con datos reales
 - Deep Learning para forecasting avanzado
+- Integración con catálogos reales de productos e inventario
+- Conexión de la simulación base con escenarios operativos más avanzados
 
 
 ### Conclusión
