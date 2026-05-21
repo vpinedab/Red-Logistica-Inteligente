@@ -137,6 +137,22 @@ Red-Logistica-Inteligente/
 │       ├── logistics_network.py
 │       └── simulation_engine.py
 │
+├── data/
+│   └── raw/
+│       ├── demand_data.csv
+│       ├── warehouses.csv
+│       ├── trucks.csv
+│       ├── routes.csv
+│       ├── demand_heatmap.png
+│       ├── demand_over_time.png
+│       ├── event_spikes.png
+│       ├── overload_risk.png
+│       ├── route_distances.png
+│       ├── traffic_risk.png
+│       ├── trucks_distribution.png
+│       ├── warehouses_capacity.png
+│       └── zone_comparison.png
+│
 ├── outputs/
 │   ├── demand_forecast_results.csv
 │   ├── demand_model_metrics.csv
@@ -148,25 +164,53 @@ Red-Logistica-Inteligente/
 ├── README.md
 ├── requirements.txt
 ├── Dockerfile
-└── docker-compose.yml
+├── docker-compose.yml
+├── .dockerignore
+└── .gitignore
 ```
 
 ### Instalación
-- Clonar el Repositorio
-- git clone https://github.com/vpinedab/Red-Logistica-Inteligente.git
-- Instalar Dependencias
-- pip install -r requirements.txt
-- En algunos sistemas puede ser necesario utilizar:
-- python3 -m pip install -r requirements.txt
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/vpinedab/Red-Logistica-Inteligente.git
+cd Red-Logistica-Inteligente
+```
+
+El proyecto usa Docker para construir el entorno de ejecución e instalar automáticamente las dependencias definidas en `requirements.txt`.
 
 ### Cómo Ejecutar el Proyecto
 
-- Paso 1: Generar Simulación de Demanda
+Desde la carpeta principal del repositorio, ejecutar:
+
+```bash
+docker compose up --build
+```
+
+Este comando construye la imagen de Docker y ejecuta el pipeline completo de la simulación logística inteligente.
+
+### Pipeline Ejecutado
+
+Docker ejecuta automáticamente los siguientes pasos:
+
+**Paso 1: Generar Simulación de Demanda**
+
+```bash
 python3 src/simulation/demand_generator.py
-- Paso 2: Generar Red Logística
+```
+
+**Paso 2: Generar Red Logística**
+
+```bash
 python3 src/simulation/logistics_network.py
-- Paso 3: Ejecutar Pipeline Completo
+```
+
+**Paso 3: Ejecutar Pipeline Completo**
+
+```bash
 python3 -m app.main
+```
 
 ### Resultados Generados
 El sistema genera:
@@ -185,13 +229,21 @@ Pedidos no asignados: 0
 Nivel de servicio: 88.46%
 
 ### Visualizaciones
+
 El proyecto genera automáticamente visualizaciones para:
+
 - Capacidad de almacenes
 - Distribución de carga de camiones
 - Distancias de rutas
 - Distribución de riesgo de tráfico
+- Predicción de demanda por zona
+- Comparación entre demanda real y demanda predicha
+- Dashboard de KPIs logísticos
 
-Estas visualizaciones se guardan en: data/raw/
+Las visualizaciones se guardan en dos carpetas:
+
+- `data/raw/`: visualizaciones generadas durante la simulación de demanda y red logística.
+- `outputs/`: visualizaciones finales del modelo predictivo y del dashboard logístico.
 
 ## KPIs del Sistema
 
@@ -223,7 +275,25 @@ Las principales contribuciones del sistema incluyen:
 
 ### Salidas generadas
 
-Este sistema automáticamente genera:
+El sistema genera archivos en dos carpetas principales:
+
+**`data/raw/`**
+
+- demand_data.csv
+- routes.csv
+- trucks.csv
+- warehouses.csv
+- demand_heatmap.png
+- demand_over_time.png
+- event_spikes.png
+- overload_risk.png
+- route_distances.png
+- traffic_risk.png
+- trucks_distribution.png
+- warehouses_capacity.png
+- zone_comparison.png
+
+**`outputs/`**
 
 - demand_forecast_results.csv
 - demand_model_metrics.csv
@@ -276,5 +346,3 @@ Este proyecto demuestra cómo la Inteligencia Artificial y la simulación logís
 - Valentina Pineda Barrón  
 - Nuria García Valdecasas
 - Natalia Quintana Guzmán
-
-

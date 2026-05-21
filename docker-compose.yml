@@ -2,13 +2,28 @@ services:
   smart-logistics:
     build: .
     container_name: smart-logistics-container
+
     volumes:
       - .:/app
+
     working_dir: /app
+
+    environment:
+      - PYTHONPATH=/app
+
+    # Comandos mostrados en el README:
+    # 1. Generar simulación de demanda:
+    #    python3 src/simulation/demand_generator.py
+    #
+    # 2. Generar red logística:
+    #    python3 src/simulation/logistics_network.py
+    #
+    # 3. Ejecutar pipeline completo:
+    #    python3 -m app.main
+
     command: >
       sh -c "
       python3 src/simulation/demand_generator.py &&
       python3 src/simulation/logistics_network.py &&
-      python3 src/simulation/simulation_engine.py &&
       python3 -m app.main
       "
